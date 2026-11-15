@@ -1,4 +1,4 @@
-function findAmbulance() {
+function findHospitals() {
     if (!navigator.geolocation) {
         alert("Location is not supported.");
         return;
@@ -9,7 +9,25 @@ function findAmbulance() {
         const lon = position.coords.longitude;
 
         window.open(
-            "https://www.google.com/maps/search/ambulance/@"
+            "https://www.google.com/maps/search/hospitals/@"
+            + lat + "," + lon + ",14z",
+            "_blank"
+        );
+    });
+}
+
+function findPolice() {
+    if (!navigator.geolocation) {
+        alert("Location is not supported.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        window.open(
+            "https://www.google.com/maps/search/police+stations/@"
             + lat + "," + lon + ",14z",
             "_blank"
         );
@@ -32,44 +50,20 @@ function findAmbulance() {
         );
     });
 }
-
 function sendEmergencyWhatsApp() {
-    const phone = prompt(
-        "Enter emergency contact number with country code (India: 91):"
-    );
+    const phone = prompt("Enter WhatsApp number with country code:");
 
-    if (!phone) return;
-
-    const cleanPhone = phone.replace(/\D/g, "");
-
-    if (cleanPhone.length < 10) {
-        alert("Please enter a valid phone number.");
+    if (!phone) {
         return;
     }
 
-    if (!navigator.geolocation) {
-        alert("Location is not supported.");
-        return;
-    }
+    const message = "🚨 EMERGENCY ALERT! I need help.";
 
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
+    const whatsappURL =
+        "https://wa.me/" +
+        phone.replace(/\D/g, "") +
+        "?text=" +
+        encodeURIComponent(message);
 
-            const message =
-                "🚨 EMERGENCY! I need help. My location: " +
-                "https://www.google.com/maps?q=" + lat + "," + lon;
-
-            const url =
-                "https://wa.me/" + cleanPhone +
-                "?text=" + encodeURIComponent(message);
-
-            window.open(url, "_blank");
-        },
-        function() {
-            alert("Please allow location access.");
-        }
-    );
+    window.location.href = whatsappURL;
 }
-alert("JavaScript is connected successfully!");
