@@ -85,3 +85,21 @@ function sendEmergencyWhatsApp() {
         }
     );
 }
+function getHospitalDirections() {
+    if (!navigator.geolocation) {
+        alert("Location is not supported.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const url =
+            "https://www.google.com/maps/dir/?api=1" +
+            "&origin=" + lat + "," + lon +
+            "&destination=hospitals";
+
+        window.open(url, "_blank");
+    });
+}
