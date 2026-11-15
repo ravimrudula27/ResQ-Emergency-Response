@@ -70,3 +70,116 @@ h1 {
     color: white;
     cursor: pointer;
 }
+/* SAFE REACH - PROFESSIONAL DESIGN */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px 20px;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    text-align: center;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #12345a;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #12345a;
+    margin-top: 35px;
+    margin-bottom: 18px;
+    font-size: 23px;
+}
+
+p {
+    margin: 12px auto;
+}
+
+button {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin: 12px auto;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    background: #1769aa;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #104d80;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+textarea {
+    width: 100%;
+    max-width: 450px;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 16px;
+    resize: vertical;
+    background: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+a button {
+    background: #dc2626;
+}
+
+#sosButton {
+    background: #dc2626;
+    font-size: 22px;
+    padding: 20px;
+    border-radius: 50px;
+    max-width: 280px;
+}
+
+#sosButton:hover {
+    background: #b91c1c;
+}
+
+#emergencyResult {
+    max-width: 450px;
+    margin: 15px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    color: #12345a;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 14px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
