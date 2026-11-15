@@ -1,48 +1,34 @@
-const sosButton = document.getElementById("sosButton");
-const status = document.getElementById("status");
-const locationText = document.getElementById("location");
-
-sosButton.addEventListener("click", function () {
-
-    status.innerHTML = "🚨 Emergency activated!";
-
-    if (navigator.geolocation) {
-
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                locationText.innerHTML =
-                    "Latitude: " + latitude +
-                    "<br>Longitude: " + longitude;
-
-            },
-
-            function () {
-                locationText.innerHTML =
-                    "Unable to access your location.";
-            }
-        );
-
-    } else {
-        locationText.innerHTML =
-            "Geolocation is not supported by this browser.";
+function findAmbulance() {
+    if (!navigator.geolocation) {
+        alert("Location is not supported.");
+        return;
     }
 
-});
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
 
-function findHospitals() {
-    window.open(
-        "https://www.google.com/maps/search/nearest+hospitals/",
-        "_blank"
-    );
+        window.open(
+            "https://www.google.com/maps/search/ambulance/@"
+            + lat + "," + lon + ",14z",
+            "_blank"
+        );
+    });
 }
+function findAmbulance() {
+    if (!navigator.geolocation) {
+        alert("Location is not supported.");
+        return;
+    }
 
-function findPolice() {
-    window.open(
-        "https://www.google.com/maps/search/nearest+police+stations/",
-        "_blank"
-    );
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        window.open(
+            "https://www.google.com/maps/search/ambulance/@"
+            + lat + "," + lon + ",14z",
+            "_blank"
+        );
+    });
 }
