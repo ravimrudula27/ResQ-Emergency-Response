@@ -53,17 +53,15 @@ function findAmbulance() {
 function sendEmergencyWhatsApp() {
     const phone = prompt("Enter WhatsApp number with country code:");
 
-    if (!phone) {
-        return;
-    }
+    if (!phone) return;
 
     const message = "🚨 EMERGENCY ALERT! I need help.";
 
-    const whatsappURL =
-        "https://wa.me/" +
+    const url =
+        "https://web.whatsapp.com/send?phone=" +
         phone.replace(/\D/g, "") +
-        "?text=" +
+        "&text=" +
         encodeURIComponent(message);
 
-    window.location.href = whatsappURL;
+    window.open(url, "_blank");
 }
