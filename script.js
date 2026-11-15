@@ -103,3 +103,23 @@ function getHospitalDirections() {
         window.open(url, "_blank");
     });
 }
+function classifyEmergency() {
+    const details = document.getElementById("emergencyDetails").value.toLowerCase();
+    const result = document.getElementById("emergencyResult");
+
+    if (details.includes("accident") || details.includes("crash")) {
+        result.innerHTML = "🚑 Emergency Type: Accident<br>Recommended: Call ambulance and police.";
+    }
+    else if (details.includes("chest") || details.includes("heart")) {
+        result.innerHTML = "❤️ Emergency Type: Medical<br>Recommended: Call an ambulance immediately.";
+    }
+    else if (details.includes("fire") || details.includes("burn")) {
+        result.innerHTML = "🔥 Emergency Type: Fire<br>Recommended: Move to a safe place and contact fire services.";
+    }
+    else if (details.includes("police") || details.includes("danger") || details.includes("attack")) {
+        result.innerHTML = "🚔 Emergency Type: Safety Threat<br>Recommended: Contact police and move to a safe location.";
+    }
+    else {
+        result.innerHTML = "⚠️ Emergency type could not be identified. Please contact emergency services.";
+    }
+}
