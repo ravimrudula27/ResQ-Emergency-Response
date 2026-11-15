@@ -123,3 +123,29 @@ function classifyEmergency() {
         result.innerHTML = "⚠️ Emergency type could not be identified. Please contact emergency services.";
     }
 }
+function startVoiceInput() {
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Voice input is not supported. Please use Google Chrome.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-IN";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+        document.getElementById("emergencyDetails").value =
+            event.results[0][0].transcript;
+    };
+
+    recognition.onerror = function() {
+        alert("Could not capture voice. Please allow microphone access and try again.");
+    };
+
+    recognition.start();
+}
