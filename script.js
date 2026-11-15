@@ -51,42 +51,37 @@ function findAmbulance() {
     });
 }
 function sendEmergencyWhatsApp() {
-
-    const phone = prompt("Enter WhatsApp number with country code:");
-
-    if (!phone) return;
-
     if (!navigator.geolocation) {
-        alert("Location is not supported by your browser.");
+        alert("Location is not supported.");
         return;
     }
 
     navigator.geolocation.getCurrentPosition(
         function(position) {
-
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-
-            const locationLink =
-                "https://www.google.com/maps?q=" +
-                latitude + "," + longitude;
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
             const message =
-                "🚨 EMERGENCY ALERT!\n\n" +
-                "I need help. My current location is:\n" +
-                locationLink;
+                "🚨 EMERGENCY ALERT!\n" +
+                "I need help.\n" +
+                "My current location:\n" +
+                "https://www.google.com/maps?q=" + lat + "," + lon;
 
-            const whatsappURL =
+            const phone = prompt("Enter WhatsApp number with country code:");
+
+            if (!phone) return;
+
+            const url =
                 "https://web.whatsapp.com/send?phone=" +
                 phone.replace(/\D/g, "") +
                 "&text=" +
                 encodeURIComponent(message);
 
-            window.open(whatsappURL, "_blank");
+            window.open(url, "_blank");
         },
 
-        function() {
-            alert("Please allow location access to send your location.");
+        function(error) {
+            alert("Location permission was not given.");
         }
     );
 }
