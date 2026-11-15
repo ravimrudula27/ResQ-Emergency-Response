@@ -72,3 +72,4 @@ function sendEmergencyWhatsApp() {
         }
     );
 }
+alert("JavaScript is connected successfully!");
